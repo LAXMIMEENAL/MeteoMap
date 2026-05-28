@@ -1,0 +1,112 @@
+
+
+# version: '3.8'
+
+# services:
+#   backend:
+#     build:
+#       context: ./backend
+#       dockerfile: Dockerfile
+#     container_name: meteomap-backend
+#     ports:
+#       - "5050:5000"
+#     env_file:
+#       - ./backend/.env
+#     volumes:
+#       - ./backend:/app
+#     depends_on:
+#       - mongodb
+#     environment:
+#       - MONGO_URI=mongodb://mongodb:27017/meteomap
+#     networks:
+#       - app-network
+
+#   frontend:
+#     build:
+#       context: ./frontend
+#       dockerfile: Dockerfile
+#     container_name: meteomap-frontend
+#     ports:
+#       - "3000:80"
+#     stdin_open: true
+#     tty: true
+#     networks:
+#       - app-network
+
+#   mongodb:
+#     image: mongo:7.0
+#     container_name: meteomap-mongo
+#     ports:
+#       - "27017:27017"
+#     volumes:
+#       - mongo-data:/data/db
+#     networks:
+#       - app-network
+#     healthcheck:
+#       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+#       interval: 10s
+#       timeout: 5s
+#       retries: 5
+
+# volumes:
+#   mongo-data:
+
+# networks:
+#   app-network:
+#     driver: bridge
+
+
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: meteomap-backend
+    ports:
+      - "5050:5000"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/meteomap
+      - WEATHER_API_KEY=
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: meteomap-frontend
+    ports:
+      - "3000:80"
+    stdin_open: true
+    tty: true
+    networks:
+      - app-network
+
+  mongodb:
+    image: mongo:7.0
+    container_name: meteomap-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mongo-data:
+
+networks:
+  app-network:
+    driver: bridge

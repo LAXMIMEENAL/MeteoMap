@@ -1,0 +1,27 @@
+.forecast-container {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 15px;
+  scrollbar-width: thin;
+}
+
+.forecast-card {
+  background: linear-gradient(to bottom, #4facfe, #00f2fe);
+  border-radius: 12px;
+  padding: 15px;
+  min-width: 120px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.forecast-card:hover {
+  transform: translateY(-5px);
+}
+
+.forecast-card img {
+  width: 50px;
+  margin: 10px 0;
+}
