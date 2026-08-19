@@ -65,7 +65,7 @@ The Node.js backend acts as the application layer for communicating with externa
 
 ## Author
 
-Laxmimeenal T
+Laxmimeenal Thirunavukkarasu
 
 B.Tech Artificial Intelligence and Data Science
 
